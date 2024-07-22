@@ -4,7 +4,7 @@ import os
 import datetime
 
 # Path to save speed test results
-file_path = './speedtest_results.csv'
+file_path = 'speedtest_results.csv'
 
 
 # Initialize the speed test
