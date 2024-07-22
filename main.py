@@ -10,7 +10,7 @@ file_path = '/home/velcorn/SpeedtestPi/results.csv'
 
 # Initialize the speed test
 def run_speedtest():
-    result = subprocess.run(['speedtest.exe', '--format', 'json'], capture_output=True, text=True)
+    result = subprocess.run(['speedtest', '--format', 'json'], capture_output=True, text=True)
     return json.loads(result.stdout)
 
 
@@ -18,8 +18,8 @@ def run_speedtest():
 def save_to_csv(data, file_path):
     df = pd.DataFrame([data])
     # Convert down/up to Mb/s, limit to timestamp, ping, jitter, download, upload, and jitter columns and round
-    df['download'] = df['download'] / 1e6
-    df['upload'] = df['upload'] / 1e6
+    df['download'] = df['download'] / 125000
+    df['upload'] = df['upload'] / 125000
     df = df[['timestamp', 'ping', 'ping_jitter', 'download', 'download_jitter', 'upload', 'upload_jitter']].round(0)
     if not os.path.isfile(file_path):
         df.to_csv(file_path, index=False)

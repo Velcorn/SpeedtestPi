@@ -1,4 +1,5 @@
 .idea
 .venv
 venv
-speedtest_results.csv
+results.csv
+log.log
